@@ -21,11 +21,11 @@
                     <%= link_to "Users", '#', class: "nav-link" %>
                 </li>
 
-                <li class="dropdown nav-link">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton"
+                <li class="dropdown">
+                    <button class="dropdown-toggle btn btn-link nav-link" data-toggle="dropdown" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account <b class="caret"></b>
-                    </a>
+                    </button>
                     <ul class="dropdown-menu">
                         <li><%= link_to "Profile", current_user, class: "nav-link"  %></li>
                         <li><%= link_to "Settings", '#', class: "nav-link"  %></li>
