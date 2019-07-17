@@ -7,7 +7,6 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
@@ -16,6 +15,29 @@
                 <li class="nav-item">
                     <%= link_to 'Help', help_path, class: "nav-link" %>
                 </li>
+
+                <% if logged_in? %>
+                <li>
+                    <%= link_to "Users", '#', class: "nav-link" %>
+                </li>
+
+                <li class="dropdown nav-link">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><%= link_to "Profile", current_user, class: "nav-link"  %></li>
+                        <li><%= link_to "Settings", '#', class: "nav-link"  %></li>
+                        <li class="divider"></li>
+                        <li>
+                            <%= link_to "Log out", logout_path, method: :delete, class: "nav-link"%>
+                        </li>
+                    </ul>
+                </li>
+                <% else %>
+                <li><%= link_to "Log in", login_path, class: "nav-link" %></li>
+                <% end %>
             </ul>
         </div>
     </div>
