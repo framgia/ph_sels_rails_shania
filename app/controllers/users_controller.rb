@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-    before_action :admin_user, only: [:edit, :update, :destroy]
+    before_action :correct_user,   only: [:edit, :update]
+    before_action :admin_user, only: :destroy
 
     def index
       @users = User.paginate(page: params[:page])
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       if @user.save
         log_in @user
-        flash[:success] = "Welcome to the Sample App!"
+        flash[:success] = "Welcome to PokeLearning!"
         redirect_to @user
     else
       render 'new'
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
     
     def edit
       @user = User.find(params[:id])
+      render 'edit'
     end
     
     def update
@@ -51,6 +53,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password,
                                   :password_confirmation)
     end
+
     def logged_in_user
       unless logged_in?
       store_location
@@ -59,6 +62,11 @@ class UsersController < ApplicationController
       end
     end
 
+    # Confirms the correct user.
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
+    end
 
     # Confirms an admin user.
     def admin_user
