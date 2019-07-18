@@ -9,4 +9,10 @@ end
 def contact
 end
 
+def lessons
+end
+
+def manage_lessons
+end
+
 end
