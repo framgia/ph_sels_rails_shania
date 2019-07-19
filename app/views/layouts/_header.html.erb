@@ -20,21 +20,8 @@
                 <li class="nav-item">
                     <%= link_to "Users", users_path, class: "nav-link" %>
                 </li>
-                    <% if current_user.admin %>
-                        <li class="dropdown">
-                            <button class="dropdown-toggle btn btn-link nav-link" data-toggle="dropdown" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <%= link_to "Lessons", class: "nav-link" %> <b class="caret"></b>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><%= link_to "Categories", lessons_path, class: "nav-link"  %></li>
-                                <li><%= link_to "Manage lessons", manage_lessons_path, class: "nav-link"  %></li>
-                            </ul>
-                        </li>
-                    <% else %>
-                        <li><%= link_to "Lessons", lessons_path, class: "nav-link"  %></li>
-                    <% end %>
-
+                <li><%= link_to "Lessons", lessons_path, class: "nav-link"  %>
+                </li>
                 <li class="dropdown">
                     <button class="dropdown-toggle btn btn-link nav-link" data-toggle="dropdown" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,6 +30,9 @@
                     <ul class="dropdown-menu">
                         <li><%= link_to "Profile", current_user, class: "nav-link"  %></li>
                         <li><%= link_to "Settings", edit_user_path(current_user), class: "nav-link"  %></li>
+                            <% if current_user.admin %>
+                                <li><%= link_to "Manage lessons", admin_categories_path, class: "nav-link"  %></li>
+                            <% end %>
                         <li class="dropdown-divider"></li>
                         <li>
                             <%= link_to "Log out", logout_path, method: :delete, class: "nav-link"%>
