@@ -30,12 +30,12 @@ module Admin
 
       def update
         @category = Category.find(params[:id])
-          if @category.update_attributes(category_params)
-            flash[:success] = "Category updated!"
-            redirect_to admin_categories_url
-          else
-            render 'edit'
-          end
+        if @category.update_attributes(category_params)
+          flash[:success] = "Category updated!"
+          redirect_to admin_categories_url
+        else
+          render 'edit'
+        end
       end
 
       def destroy

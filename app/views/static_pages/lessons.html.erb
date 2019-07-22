@@ -1,32 +1,16 @@
 <% provide(:title, "Lessons") %>
-<p></p>
-<h1>Categories</h1>
-<p>
-    This is where I place the categories!
-</p>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1>Categories</h1>
 
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-        <div class="card-header">Basic 500</div>
-        <div class="card-body text-secondary">
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Start</a>
+      <div class="card-deck">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Category </h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <%= link_to "Start", class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <p> </p>
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-        <div class="card-header">Advance Lessons</div>
-        <div class="card-body text-secondary">
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Start</a>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
