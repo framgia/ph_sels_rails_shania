@@ -7,11 +7,6 @@ module Admin
         @categories = Category.all
       end
 
-      def show
-        #shows one id
-        @category = Category.find(params[:id])
-      end
-
       def new
         @category = Category.new
       end

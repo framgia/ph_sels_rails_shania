@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  get 'word/name'
   get 'categories/new'
   resources :categories
   root   'static_pages#home'
   get    '/help',    to: 'static_pages#help'
-  get    '/lessons', to: 'static_pages#lessons'
+  get    '/lessons', to: 'categories#index'
   get    '/about',   to: 'static_pages#about'
   get    '/contact', to: 'static_pages#contact'
   get    '/signup',  to: 'users#new'
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
   resources :users
 
   namespace :admin do 
-    resources :categories
+    resources :categories do
+      resources :words, only: [:index, :new, :create, :edit, :update, :destroy]
+    end
   end
 end
