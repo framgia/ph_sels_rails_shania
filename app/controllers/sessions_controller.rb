@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :check_signed_in, only: [:new]
+  before_action :check_admin_user, only: [:admin]
 
   def new
   end
@@ -25,4 +26,5 @@ class SessionsController < ApplicationController
   def check_signed_in
     redirect_to(root_url) if logged_in?
   end
+
 end

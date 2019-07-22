@@ -1,5 +1,6 @@
 module Admin
   class CategoriesController < ApplicationController
+    before_action :check_admin_user, only: [:index]
 
       def index
         # show all
@@ -47,6 +48,10 @@ module Admin
       private
       def category_params
         params.require(:category).permit(:title, :description)
+      end
+
+      def check_admin_user
+        redirect_to(root_url) unless current_user.admin?
       end
   end
 end
