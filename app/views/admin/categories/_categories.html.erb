@@ -1,0 +1,5 @@
+<li>
+    <% if current_user.admin? && !current_user?(user) %>
+        <%= link_to "Edit", category %>
+    <% end %>
+</li>
