@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index 
-    @categories = Category.all().order('title')
+    @categories = Category.order('title')
   end
 
   def show

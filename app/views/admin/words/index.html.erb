@@ -20,7 +20,9 @@
                             <td><%= word.name %></td>
                             <td>answer</td>
                             <td>
-                                <%= link_to "Edit", edit_admin_category_word_path(@category.id, word.id) %> | <%= link_to "Delete", admin_category_word_path(@category.id, word.id), method: :delete,
+                                <%= link_to "Edit", edit_admin_category_word_path(@category.id, word.id) %> |
+                                <%= link_to "Delete", [:admin, @category, word],
+                                method: :delete,
                                 data: { confirm: "You sure?"} %>
                             </td>
                         </tr>
@@ -28,6 +30,7 @@
                     </tbody>
                 </table>
                 <%= link_to "Add word", new_admin_category_word_path, class: "btn btn-primary" %>
+                <%= link_to "Back", admin_categories_path, class: "btn btn-primary" %>
             </div>
         </div>
     </div>
