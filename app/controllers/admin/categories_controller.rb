@@ -46,8 +46,10 @@ module Admin
       end
 
       def check_admin_user
-        flash[:danger] = "You cannot access this page!"
-        redirect_to(root_url) unless current_user.admin?
+        unless current_user.admin?
+          flash[:danger] = "You cannot access this page!"
+          redirect_to(root_url)
+        end
       end
   end
 end
