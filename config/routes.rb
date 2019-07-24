@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'word/name'
+
   get 'categories/new'
   resources :categories
   root   'static_pages#home'
