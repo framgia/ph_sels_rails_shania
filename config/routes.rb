@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'word/name'
+
   get 'categories/new'
   resources :categories
   root   'static_pages#home'
@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :categories do
-      resources :words,  except: [:show]
+      resources :words do
+        resources :choices, only: [:index, :create, :update, :destroy]
+      end
     end
   end
 end
