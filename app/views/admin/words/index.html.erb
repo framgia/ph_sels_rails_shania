@@ -18,9 +18,13 @@
                         <% @words.each do |word| %>
                         <tr>
                             <td><%= word.name %></td>
-                            <td>answer</td>
+                            <% word.choices.each do |choice| %>
+                                <% if choice.correct? %>
+                                    <td><%= choice.content %></td>
+                                <% end %>
+                            <% end %>
                             <td>
-                                <%= link_to "Edit", edit_admin_category_word_path(@category.id, word.id) %> |
+                                <%= link_to "Edit", edit_admin_category_word_path(@category, word) %> |
                                 <%= link_to "Delete", [:admin, @category, word],
                                     method: :delete,
                                     data: { confirm: "You sure?"} %>

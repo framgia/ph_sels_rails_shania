@@ -1,15 +1,42 @@
-<%= form_for [:admin, :category, @word] do |f| %>
-    <%= render 'shared/error_messages', object: @word %>
-    <div class = 'form-group'>
-        <%= f.label :name %>
-        <%= f.text_field :name, class:'form-control' %>
-    </div>
-    <div class ="btn-toolbar" role="toolbar">
-        <div class="btn-group mr-2" role="group">
-            <%= f.submit "Save", class: "btn btn-primary" %>
+    <%= form_for [:admin, @category, @word] do |f| %>
+        <%= render 'shared/error_messages', object: @word %>
+        <div class="container mt-4">
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th rowspan="4">
+                                <div class='form-group'>
+                                    <%= f.label :name %>
+                                    <%= f.text_field :name, class:'form-control' %>
+                                </div>
+                            </th>
+                        </tr>
+                        
+                        <%= f.fields_for :choices do |fi| %>
+                            <tr>
+                                <td>
+                                    <div class='form-group'>
+                                        <%= fi.label :content %>
+                                        <%= fi.text_field :content %>
+                                        <div class="form-check form-check-inline">
+                                            <%= fi.label :Correct, class:'form-check-label' %>
+                                            <%= fi.check_box :correct, class:'form-check-input' %>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+                <div class="btn-toolbar" role="toolbar">
+                    <div class="btn-group mr-2" role="group">
+                        <%= f.submit "Save", class: "btn btn-primary" %>
+                    </div>
+                    <div class="btn-group mr-2" role="group">
+                        <%= link_to "Back", request.present? ? request.referer : admin_categories_path, class: "btn btn-primary"  %>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="btn-group mr-2" role="group">
-            <%= link_to "Back", request.present? ? request.referer : admin_categories_path, class: "btn btn-primary"  %>
-        </div>
-    </div>
-<% end %>
+    <% end %>
