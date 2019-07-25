@@ -6,9 +6,9 @@
                 <tbody>
                     <tr>
                         <th rowspan="4">
-                            <div class='form-group'>
+                            <div class="form-group">
                                 <%= f.label :name %>
-                                <%= f.text_field :name, class:'form-control' %>
+                                <%= f.text_field :name, class:"form-control" %>
                             </div>
                         </th>
                     </tr>
@@ -16,13 +16,13 @@
                     <%= f.fields_for :choices do |fi| %>
                         <tr>
                             <td>
-                                <div class='form-group'>
+                                <div class="form-group">
                                     <%= fi.label :content %>
                                     <%= fi.text_field :content %>
-                                    <div>
-                                        <%= fi.label :Correct %>
-                                        <%= fi.check_box :correct %>
-                                    </div>
+                                </div>
+                                <div class="form-check form-group">
+                                    <%= fi.check_box :correct, class: "form-check-input"  %>
+                                    <%= fi.label :correct, class: "form-check-label" %>
                                 </div>
                             </td>
                         </tr>
