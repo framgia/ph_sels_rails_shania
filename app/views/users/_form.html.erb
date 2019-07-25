@@ -19,9 +19,9 @@
     </div>
     <% if logged_in? %>
         <% if current_user.admin %>
-            <div class="form-group">
-                <%= f.label :admin %>
-                <%= f.check_box :admin, class: 'form-control' %>
+            <div class="form-check form-group">
+                <%= f.check_box :admin, class: "form-check-input" %>
+                <%= f.label :admin, class: "form-check-label" %>
             </div>
         <% end %>
     <% end %>

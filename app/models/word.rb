@@ -7,18 +7,12 @@ class Word < ApplicationRecord
   validate :must_have_one_item
 
   def must_have_one_item
-    trueCounter = 0
-    for choice in choices
-      puts choice.correct
-        if choice.correct == true
-          trueCounter+=1
-        end
-    end
-    puts trueCounter
-    if trueCounter > 1
+    correct_counter = choices.collect { |c| c.correct }.count(true)
+    if correct_counter  > 1
       errors.add(:choice, 'Must have only one correct answer')
-    elsif trueCounter == 0
+    elsif  correct_counter  == 0
       errors.add(:choice, 'Must have one correct answer')
     end
   end
+
 end

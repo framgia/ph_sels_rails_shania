@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do 
     resources :categories do
-      resources :words do
-        resources :choices, only: [:index, :create, :update, :destroy]
-      end
+      resources :words
     end
   end
 end

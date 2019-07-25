@@ -1,6 +1,6 @@
 module Admin
   class WordsController < ApplicationController
-    before_action :check_admin_user, only: [:index]
+    before_action :check_admin_user
 
       def index
         # show all
@@ -60,11 +60,5 @@ module Admin
           choices_attributes: [ :id, :content, :correct ])
       end
 
-      def check_admin_user
-        unless current_user.admin?
-          flash[:danger] = "You cannot access this page!"
-          redirect_to(root_url)
-        end
-      end
   end
 end
