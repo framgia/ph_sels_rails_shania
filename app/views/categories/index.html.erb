@@ -18,13 +18,11 @@
                                     <% end %>
                                 </div>
                                 <p class="card-text"><%= category.description %></p>
-                                <div class="card-footer">
                                     <% if is_finished(category).nil? %>
                                         <%= render 'form', category:category %>
                                     <% else %>
                                         <%= link_to "See Results", category_lesson_path(category, is_finished(category)) %>
                                     <% end %>
-                                </div>
                             </div>
                         </div>
                     </div>
