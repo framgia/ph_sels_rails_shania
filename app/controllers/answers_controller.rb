@@ -21,8 +21,6 @@ class AnswersController < ApplicationController
         @lesson.answers.each do |answer|
           if answer.choice.correct?
             result += 1
-          elsif answer.choice.correct == 0
-            result = 0
           end #end of if inside if
           @lesson.update_attribute(:result, result)
           @lesson.update_attribute(:is_completed, true)
