@@ -3,24 +3,33 @@
 <h1>Categories</h1>
 <div class="container">
     <div class="row">
-        <div class = "col-sm-4 py-2">
             <% @categories.each do |category| %>
                 <% if category.words.any? %>
-                    <div class="card border-primary mb-3" style="max-width: 18rem;"">
-                        <div class="card-body h-100">
-                            <div class="card-header  bg-transparent border-primary"> <h5 class="card-title"> <%= category.title %> </h5></div>
-                            <p class="card-text"><%= category.description %></p>
-                            <div class="card-footer">
-                                <% if is_finished(category).nil? %>
-                                    <%= render 'form', category:category %>
-                                <% else %>
-                                    <%= link_to "See Results", category_lesson_path(category, is_finished(category)) %>
-                                <% end %>
+                    <div class = "col-4 py-2">
+                        <div class="card border-primary mb-3" style="max-width: 18rem;"">
+                            <div class="card-body h-100">
+                                <div class="card-header  bg-transparent border-primary d-flex justify-content-around"><h5 class="card-title"><%= category.title %></h5>
+                                    <% if is_finished(category) %>
+                                        <h6>
+                                            <span class="badge badge-info">
+                                                Score: <%= show_result(category) %>
+                                            </span>
+                                        </h6>
+                                    <% end %>
+                                </div>
+                                <p class="card-text"><%= category.description %></p>
+                                <div class="card-footer">
+                                    <% if is_finished(category).nil? %>
+                                        <%= render 'form', category:category %>
+                                    <% else %>
+                                        <%= link_to "See Results", category_lesson_path(category, is_finished(category)) %>
+                                    <% end %>
+                                </div>
                             </div>
                         </div>
                     </div>
                 <% end %>
             <% end %>
-        </div>
+        
     </div>
 </div>

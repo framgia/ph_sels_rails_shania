@@ -17,17 +17,15 @@ class AnswersController < ApplicationController
       unless params[:page].empty?
         redirect_to new_category_lesson_answer_url(@category,@lesson, page: params[:page])
       else
-        result=0
+        result = 0
         @lesson.answers.each do |answer|
           if answer.choice.correct?
             result += 1
-            @lesson.update_attribute(:result, result)
-            @lesson.update_attribute(:is_completed, true)
-          else
+          elsif answer.choice.correct == 0
             result = 0
-            @lesson.update_attribute(:result, result)
-            @lesson.update_attribute(:is_completed, true)
-          end #end of if
+          end #end of if inside if
+          @lesson.update_attribute(:result, result)
+          @lesson.update_attribute(:is_completed, true)
         end #end of do
         redirect_to category_lesson_url(@category, @lesson) #redirects if page=>""
       end #end of unless
