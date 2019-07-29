@@ -1,0 +1,11 @@
+<%= form_for([category, @lesson]) do |f| %>
+    <%=render 'shared/error_messages', object: @lesson %>
+
+    <%= hidden_field_tag :current_user, current_user.id %>
+
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <%= f.submit "Start", class: "btn btn-primary" %>
+        </div>
+    </div>
+<% end %>

@@ -1,0 +1,37 @@
+<% provide(:title, "Results") %>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card shadow col-md-8">
+            <div class="card-body">
+            <h1><%= @category.title %></h1>
+                <table class="table table-hover">
+                <thead>
+                    <tr class="bg-primary">
+                        <th class="text-white" colspan="3">Results</th>
+                        <th class="text-white"> Score: <%= @lesson.result %></th>
+                    </tr>
+                    <tr>
+                        <th>Word</th>
+                        <th>Your answer</th>
+                        <th rowspan="2">Correct answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <% @answers.each do |answer| %>
+                        <td> <%= answer.word.name %> </td>
+                        <td> <%= answer.choice.content %> </td>
+                        <td> <%= answer.word.word_choices %> </td>
+                        <% if answer.choice.content == answer.word.word_choices %>
+                            <td><h3 class="text-success">✓</h3></td>
+                        <% else %>
+                            <td><h3 class="text-danger">✕</h3></td>
+                        <% end %>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>

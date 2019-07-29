@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   def index 
+    @lesson = Lesson.new
     @categories = Category.order('title')
   end
 

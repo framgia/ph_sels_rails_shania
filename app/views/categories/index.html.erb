@@ -1,18 +1,26 @@
 <% provide(:title, "Lessons") %>
 
 <h1>Categories</h1>
-<div class="card-deck">
-    <% @categories.each do |category| %>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title"> <%= category.title %> </h5>
-                <p class="card-text">
-                    <%= category.description %>
-                </p>
-                <% if logged_in? %>
-                    <%= link_to "Start", class: "btn btn-primary" %>
+<div class="container">
+    <div class="row">
+        <div class = "col-sm-4 py-2">
+            <% @categories.each do |category| %>
+                <% if category.words.any? %>
+                    <div class="card border-primary mb-3" style="max-width: 18rem;"">
+                        <div class="card-body h-100">
+                            <div class="card-header  bg-transparent border-primary"> <h5 class="card-title"> <%= category.title %> </h5></div>
+                            <p class="card-text"><%= category.description %></p>
+                            <div class="card-footer">
+                                <% if is_finished(category).nil? %>
+                                    <%= render 'form', category:category %>
+                                <% else %>
+                                    <%= link_to "See Results", category_lesson_path(category, is_finished(category)) %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
                 <% end %>
-            </div>
+            <% end %>
         </div>
-    <% end %>
+    </div>
 </div>
