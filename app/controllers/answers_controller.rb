@@ -22,8 +22,7 @@ class AnswersController < ApplicationController
           if answer.choice.correct?
             result += 1
           end #end of if inside if
-          @lesson.update_attribute(:result, result)
-          @lesson.update_attribute(:is_completed, true)
+          @lesson.update_attributes(:result => result, :is_completed => true)
         end #end of do
         redirect_to category_lesson_url(@category, @lesson) #redirects if page=>""
       end #end of unless
