@@ -1,0 +1,36 @@
+<% provide(:title, "Lessons") %>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card shadow col-md-8">
+            <div class="card-body">
+                <h1><%= @category.title %></h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="4">
+                                <div class="page_info">
+                                    <%= page_entries_info @words %>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <% @words.each do |word| %>
+                                <tr>
+                                    <td rowspan="5" class="col-sm-4"><%= word.name %></td>
+                                </tr>
+                                <% word.choices.each do |choice| %>
+                                    <tr>
+                                        <td><%= render 'form', word: word, choice: choice %></td>
+                                    </tr>
+                                <% end %>
+                            <% end %>
+                        </tr>
+                    </tbody>
+                </table>
+                <%= will_paginate @words %>                
+            </div>
+        </div>
+    </div>
+</div>

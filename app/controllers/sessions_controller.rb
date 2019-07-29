@@ -2,9 +2,6 @@ class SessionsController < ApplicationController
   before_action :check_signed_in, only: [:new]
   before_action :check_admin_user, only: [:admin]
 
-  def new
-  end
-
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])

@@ -1,0 +1,14 @@
+<%= form_for([@category, @lesson, @answer]) do |f| %>
+    <%=render 'shared/error_messages', object: @answer %>
+
+    <%= hidden_field_tag :word_id, word.id %>
+    <%= hidden_field_tag :choice_id, choice.id %>
+    <%= hidden_field_tag :page, @words.next_page %>
+
+
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group mr-2" role="group">
+            <%= f.submit choice.content, class: "btn btn-primary btn-lg btn-block" %>
+        </div>
+    </div>
+<% end %>
