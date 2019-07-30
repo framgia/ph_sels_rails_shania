@@ -5,7 +5,7 @@ User.create!(name:  "Admin User",
   admin: true)
 
 #User
-45.times do |n|
+99.times do |n|
   name  = Faker::Games::Pokemon.name
   email = "example-#{n+1}@sun-asterisk.com"
   password = "sun-asterisk"
@@ -28,6 +28,6 @@ end
 users = User.all
 user  = users.first
 following = users[2..50]
-followers = users[3..40]
+followers = users[3..60]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
