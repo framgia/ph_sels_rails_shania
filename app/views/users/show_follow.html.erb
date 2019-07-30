@@ -7,14 +7,14 @@
       <span><%= link_to "view my profile", @user %></span>
     </section>
     <section class="stats">
-      <%= render 'shared/stats' %>
-      <% if @users.any? %>
+        <%= render 'shared/stats' %>
+        <% if @users.any? %>
         <div class="user_avatars">
-          <% @users.each do |user| %>
+            <% @users.each do |user| %>
             <%= link_to gravatar_for(user, size: 30), user %>
-          <% end %>
+        <% end %>
         </div>
-      <% end %>
+        <% end %>
     </section>
   </aside>
   <div class="col-md-8">
@@ -24,5 +24,21 @@
         <%= render @users %>
       </ul>
       <%= will_paginate %>
+    <% else %>
+    <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="card shadow col-md-8">
+            <div class="card-body">
+                <span>
+                    <h3 class="center">No record.</h3>
+                    <div class="image">
+                        <%= link_to image_tag("1906_Surprised_Pikachu.png", alt: "Pikachu emote"),
+                            'https://discordemoji.com/assets/emoji/1906_Surprised_Pikachu.png' %>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+    </div>
     <% end %>
   </div>

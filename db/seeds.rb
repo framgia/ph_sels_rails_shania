@@ -6,7 +6,7 @@ User.create!(name:  "Admin User",
 
 #User
 45.times do |n|
-  name  = Faker::TvShows::DrWho.character
+  name  = Faker::Games::Pokemon.name
   email = "example-#{n+1}@sun-asterisk.com"
   password = "sun-asterisk"
   User.create!(name:  name,
@@ -15,15 +15,16 @@ User.create!(name:  "Admin User",
       password_confirmation: password)
 end
 
+
 #Category
 12.times do
-  title = Faker::Games::Pokemon.name
-  description = Faker::Games::Pokemon.move
+  title = Faker::Games::Pokemon.move
+  description = Faker::Games::Pokemon.location
   Category.create!(title:  title,
     description: description)
 end
 
-# Following relationships
+#Following relationships
 users = User.all
 user  = users.first
 following = users[2..50]
