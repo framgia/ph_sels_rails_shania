@@ -18,7 +18,15 @@ Rails.application.routes.draw do
     resources :lessons do
       resources :answers
     end
-  end 
+  end
+
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
+  resources :relationships,  only: [:create, :destroy]
 
   namespace :admin do 
     resources :categories do
