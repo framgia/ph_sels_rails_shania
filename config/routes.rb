@@ -14,15 +14,15 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users
 
-  resources :categories do
-    resources :lessons do
-      resources :answers
-    end
-  end
-
   resources :users do
     member do
       get :following, :followers
+    end
+  end
+
+  resources :categories do
+    resources :lessons do
+      resources :answers
     end
   end
 

@@ -1,13 +1,32 @@
-<div class="center jumbotron">
-    <h1>Welcome to PokeLearning</h1>
+<% if logged_in? %>
+    <div class="row">
+        <aside class="col-md-4">
+        <section class="user_info">
+            <%= render 'shared/user_info' %>
+        </section><!-- end of user_info -->
+        <section class="activity_form">
+        </section><!-- end of activity_info -->
+        </aside>
+        <div class="col-md-8">
+            <% @activities.each do |activity| %>
+                <% if activity.action_type == "Lesson" %>
+                    <%= activity.action.user.name %> scored <%= activity.action.result %> in <%= activity.action.category.title %>
+                <% else %>
+                  
+                <% end %>
+            <% end %>
+        </div>
+    </div><!-- end of row -->
+<% else %>
+    <div class="center jumbotron">
+        <h1>Welcome to PokeLearning</h1>
 
-    <h2>This is the home page!</h2>
-    <% if !logged_in? %>
-        <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
-    <% end %>
-</div>
+        <h2>This is the home page!</h2>
+            <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+    </div>
 
-<div class="image">
+    <div class="image">
     <%= link_to image_tag("pikachu.png", alt: "Pikachu logo"),
             'https://hypixel.net/proxy/BcmjTMrMwQRx3z7n0t8KPWFpLzW0S%2BPqEVZmRWVBA%2F3cmGDpQb6f43JR76nr70rlldnTrMw%3D/image.png' %>
-</div>
+    </div>
+<% end %>
