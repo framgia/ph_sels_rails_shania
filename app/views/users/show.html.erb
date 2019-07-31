@@ -8,11 +8,15 @@
             </h1>
         </section>
         <section class="stats">
+            <div class="col-md-8">
+                <%= render 'follow_form' if logged_in? %>
+            </div>
+            <br>
             <%= render 'shared/stats' %>
         </section>
-        <div class="col-md-8">
-            <%= render 'follow_form' if logged_in? %>
-        </div>
+        <section>
+            <%= total = @user.answers.count %> words learned
+        </section>
     </aside>
     <div class="col-md-8">
         <% if @user.activities.any? %>

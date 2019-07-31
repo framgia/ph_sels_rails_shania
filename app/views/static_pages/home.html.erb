@@ -7,6 +7,9 @@
             <section class="stats">
                 <%= render 'shared/stats' %>
             </section>
+            <section>
+                <%= link_to "#{current_user.answers.count} words learned", words_path, class: "btn btn-lg btn-primary" %>
+            </section>
         </aside>
             <div class="col-md-8">
             <ol class="activities">

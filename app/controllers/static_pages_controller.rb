@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 def home
   if logged_in?
     @activities = current_user.feed.paginate(page: params[:page])
-  end  
+  end 
 end
 
 def help
