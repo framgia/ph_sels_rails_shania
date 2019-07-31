@@ -10,9 +10,15 @@
 
         <!-- Showing action_type posts -->
         <% if activity.action_type == "Lesson"%>
-            scored <%= link_to activity.action.result, category_lesson_url(activity.action.id, activity.action.category.id) %> in <%= activity.action.category.title %>
+            scored <%= activity.action.result %> out of <%= activity.action.words.count %>
+            in <span class="badge badge-light"><%= link_to activity.action.category.title, category_lesson_url(activity.action.category.id, activity.action.id) %></span>
         <% else %>
-            followed <%= link_to activity.action.followed.name, activity.action.followed %>
+            followed
+            <% if activity.action.followed.name == current_user.name %>
+                <%= link_to "you", activity.action.followed %>
+            <% else %>
+                <%= link_to activity.action.followed.name, activity.action.followed %>
+            <% end %>
         <% end %>
     </span>
     <span class="timestamp">
