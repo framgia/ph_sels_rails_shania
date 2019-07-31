@@ -8,9 +8,18 @@ class Word < ApplicationRecord
   validates :category_id, presence: true
   validates :name, presence: true, length: { maximum: 50 }
   validate :must_have_one_item
+  validate :unique
 
   def word_choices
     choices.find_by(correct: true).content
+  end
+
+  def unique
+    u = choices.uniq { |choice| choice.content }.length
+    choice_length = choices.length
+    if u < choice_length
+      errors.add(:choice, 'Must have unique choices!')
+    end
   end
 
   private
