@@ -12,7 +12,7 @@
                                     <% if is_finished(category) %>
                                         <h6>
                                             <span class="badge badge-info">
-                                                Score: <%= show_result(category) %>
+                                                Score: <%= show_result(category) %> / <%= total_words(category) %>
                                             </span>
                                         </h6>
                                     <% end %>

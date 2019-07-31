@@ -1,3 +1,5 @@
+require 'faker'
+
 User.create!(name:  "Admin User",
   email: "example@railstutorial.org",
   password:              "foobar",
@@ -15,11 +17,10 @@ User.create!(name:  "Admin User",
       password_confirmation: password)
 end
 
-
 #Category
 12.times do
-  title = Faker::Games::Pokemon.move
-  description = Faker::Games::Pokemon.location
+  title = Faker::Games::Pokemon.unique.move
+  description = Faker::Games::Pokemon.unique.location
   Category.create!(title:  title,
     description: description)
 end
