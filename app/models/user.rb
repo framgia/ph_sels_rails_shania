@@ -28,6 +28,14 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
+  # Returns a user's status feed.
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+      WHERE  follower_id = :user_id"
+    Activity.where("user_id IN (#{following_ids})
+        OR user_id = :user_id", user_id: id)
+  end
+
   # Follows a user.
   def follow(other_user)
     following << other_user
@@ -35,7 +43,7 @@ class User < ApplicationRecord
 
   # Unfollows a user.
   def unfollow(other_user)
-    following.delete(other_user)
+    active_relationships.find_by(followed_id: other_user).destroy
   end
 
   # Returns true if the current user is following the other user.

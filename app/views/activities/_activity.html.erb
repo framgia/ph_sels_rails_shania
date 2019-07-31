@@ -1,16 +1,21 @@
 <li id="activity-<%= activity.id %>">
     <%= link_to gravatar_for(activity.user, size: 50), activity.user %>
-    <span class="user"><%= link_to activity.user.name, activity.user %></span>
-    <span class="content">
-        <% if activity.action_type == "Lesson"%>
-            Answered
-            <%= activity.action.category.title %>
+    <span class="user">
+        <!-- Showing the name of users -->
+        <% if activity.user.name == current_user.name %>
+            <%= link_to "You", activity.user %>
         <% else %>
-            Followed
-            <%= link_to activity.action.followed.name, activity.action.followed %>
+            <%= link_to activity.user.name, activity.user %>
+        <% end %>
+
+        <!-- Showing action_type posts -->
+        <% if activity.action_type == "Lesson"%>
+            scored <%= link_to activity.action.result, category_lesson_url(activity.action.id, activity.action.category.id) %> in <%= activity.action.category.title %>
+        <% else %>
+            followed <%= link_to activity.action.followed.name, activity.action.followed %>
         <% end %>
     </span>
     <span class="timestamp">
-    Posted <%= time_ago_in_words(activity.created_at) %> ago.
+        Posted <%= time_ago_in_words(activity.created_at) %> ago.
     </span>
 </li>
