@@ -15,6 +15,7 @@
                         <div class="card shadow col-md-8">
                             <div class="card-body">
                                 <table class="table table-hover">
+                                <% if @user.lessons.any? %>
                                 <thead>
                                     <tr>
                                         <th>Words</th>
@@ -24,20 +25,29 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <% @user.lessons.each do |lesson| %>
-                                        <% lesson.answers.each do |answer| %>
-                                            <td> <%= answer.word.name %> </td>
-                                            <td> <%= answer.choice.content %> </td>
-                                            <td> <%= answer.word.word_choices %> </td>
-                                            <% if answer.choice.content == answer.word.word_choices %>
-                                                <td><h3 class="text-success">✓</h3></td>
-                                            <% else %>
-                                                <td><h3 class="text-danger">✕</h3></td>
-                                            <% end %>
-                                        </tr>
+                                        <% @user.lessons.each do |lesson| %>
+                                                <% lesson.answers.each do |answer| %>
+                                                    <td> <%= answer.word.name %> </td>
+                                                    <td> <%= answer.choice.content %> </td>
+                                                    <td> <%= answer.word.word_choices %> </td>
+                                                    <% if answer.choice.content == answer.word.word_choices %>
+                                                        <td><h3 class="text-success">✓</h3></td>
+                                                    <% else %>
+                                                        <td><h3 class="text-danger">✕</h3></td>
+                                                    <% end %>
+                                                <% end %>
                                         <% end %>
-                                    <% end %>
+                                    <% else %>
+                                    <span>
+                                        <h3 class="center">No record.</h3>
+                                        <div class="image">
+                                            <%= link_to image_tag("1906_Surprised_Pikachu.png", alt: "Pikachu emote"),
+                                                'https://discordemoji.com/assets/emoji/1906_Surprised_Pikachu.png' %>
+                                        </div>
+                                    </span>
+                                    </tr>
                                 </tbody>
+                                <% end %>
                             </table>
                             </div>
                         </div>

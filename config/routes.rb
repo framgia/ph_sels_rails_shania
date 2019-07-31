@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'words/index'
   get 'lessons/new'
   get 'answers/new'
   get 'categories/new'

@@ -15,9 +15,8 @@ class Word < ApplicationRecord
   end
 
   def unique
-    u = choices.uniq { |choice| choice.content }.length
-    choice_length = choices.length
-    if u < choice_length
+    duplicate_values = choices.uniq { |choice| choice.content }.length
+    if duplicate_values < choices.length
       errors.add(:choice, 'Must have unique choices!')
     end
   end
