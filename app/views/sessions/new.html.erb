@@ -1,19 +1,31 @@
 <% provide(:title, "Log in") %>
-<h1>Log in</h1>
-
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <%= form_for(:session, url: login_path) do |f| %>
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="card shadow col-md-12">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <h1>Log in</h1>
+                                    <%= form_for(:session, url: login_path) do |f| %>
 
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-control' %>
+                                    <%= f.label :email %>
+                                    <%= f.email_field :email, class: 'form-control' %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+                                    <%= f.label :password %>
+                                    <%= f.password_field :password, class: 'form-control' %>
+                                    
+                                    <br>
+                                    <%= f.submit "Log in", class: "btn btn-primary" %>
+                                    <% end %>
 
-        <%= f.submit "Log in", class: "btn btn-primary" %>
-        <% end %>
-
-        <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+                                    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
