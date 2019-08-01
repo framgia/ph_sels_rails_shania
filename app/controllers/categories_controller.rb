@@ -1,7 +1,14 @@
 class CategoriesController < ApplicationController
   def index 
     @lesson = Lesson.new
-    @categories = Category.order('title')
+    @filter = Category.order('title')
+
+    @categories = []
+    @filter.each do |category|
+      if category.words.any?
+        @categories << category
+      end
+    end
   end
 
   def show
