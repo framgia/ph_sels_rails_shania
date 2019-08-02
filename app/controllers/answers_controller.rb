@@ -23,6 +23,7 @@ class AnswersController < ApplicationController
             result += 1
           end #end of if inside if
           @lesson.update_attributes(:result => result, :is_completed => true)
+          @lesson.create_activity(user_id: current_user.id)
         end #end of do
         redirect_to category_lesson_url(@category, @lesson) #redirects if page=>""
       end #end of unless
