@@ -21,9 +21,18 @@ end
 4.times do
   title = Faker::Games::Pokemon.unique.move
   description = Faker::Games::Pokemon.unique.location
-  name = Faker::Coffee.unique.blend_name
-  content = Faker::Lorem.unique.word
+  name = Faker::Creature::Animal.unique.name
   category =  Category.create!(title: title, description: description)
+
+  word = Word.create!(
+    name: name,
+    category_id: category.id,
+    choices_attributes:[
+      { content: Faker::Lorem.unique.word, correct: false},
+      { content: Faker::Lorem.unique.word, correct: false},
+      { content: Faker::Lorem.unique.word, correct: true}
+    ]
+  )
 end
 
 
