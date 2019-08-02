@@ -42,6 +42,8 @@ gem 'jquery-rails'
 gem 'bcrypt', '3.1.12'
 gem 'faker', '1.9.6', branch: 'master',  git: 'https://github.com/stympy/faker'
 gem 'will_paginate-bootstrap4'
+gem 'pg', '0.18.1', group: :production
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
