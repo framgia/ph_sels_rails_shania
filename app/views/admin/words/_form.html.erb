@@ -29,12 +29,12 @@
                     <% end %>
                 </tbody>
             </table>
-            <div class="btn-toolbar" role="toolbar">
-                <div class="btn-group mr-2" role="group">
-                    <%= f.submit "Save", class: "btn btn-primary" %>
+            <div class="btn btn-toolbar row justify-content-center" role="toolbar">
+                <div class="btn-group mr-5" role="group">
+                    <%= f.submit "Save", class: "btn btn-primary btn-lg" %>
                 </div>
                 <div class="btn-group mr-2" role="group">
-                    <%= link_to "Back", request.present? ? request.referer : admin_categories_path, class: "btn btn-primary"  %>
+                    <%= link_to "Back", request.present? ? request.referer : admin_categories_path, class: "btn btn-primary btn-lg"  %>
                 </div>
             </div>
         </div>

@@ -11,7 +11,6 @@ class LessonsController < ApplicationController
     @category = Category.find(params[:category_id])
     @lesson = @category.lessons.build(user: current_user)
     if @lesson.save
-      @lesson.create_activity(user_id: current_user.id)
       redirect_to new_category_lesson_answer_url(@category, @lesson, page:1 )
     else
       render 'new'

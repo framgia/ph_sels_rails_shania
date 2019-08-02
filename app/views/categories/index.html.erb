@@ -1,33 +1,59 @@
 <% provide(:title, "Lessons") %>
-
-<h1>Categories</h1>
-<div class="container">
-    <div class="row">
-            <% @categories.each do |category| %>
-                <% if category.words.any? %>
-                    <div class = "col-4 py-2">
-                        <div class="card border-primary mb-3" style="max-width: 18rem;"">
-                            <div class="card-body h-100">
-                                <div class="card-header  bg-transparent border-primary d-flex justify-content-around"><h5 class="card-title"><%= category.title %></h5>
-                                    <% if is_finished(category) %>
-                                        <h6>
-                                            <span class="badge badge-info">
-                                                Score: <%= show_result(category) %> / <%= total_words(category) %>
-                                            </span>
-                                        </h6>
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="container mt-4">
+                <div class="row justify-content-center">
+                    <div class="card shadow col-md-12">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <h1>Categories</h1>
+                                </div>
+                                <div class="card-group col-lg-12">
+                                    <% if @categories.any? %>
+                                        <% @categories.each do |category| %>
+                                            <div class = "col-4 p-3">
+                                                <div class="card border-primary" style="max-width: 18rem;">
+                                                    <div class="card-body h-100">
+                                                        <div class="card-header bg-transparent border-primary d-flex justify-content-around"><h5 class="card-title"><%= category.title %></h5>
+                                                            <% if is_finished(category) %>
+                                                                <h6>
+                                                                    <span class="badge badge-info">
+                                                                        Score: <%= show_result(category) %> / <%= total_words(category) %>
+                                                                    </span>
+                                                                </h6>
+                                                            <% end %>
+                                                        </div>
+                                                        <p class="card-text"><%= category.description %></p>
+                                                            <% if is_finished(category).nil? %>
+                                                                <%= render 'form', category:category %>
+                                                            <% else %>
+                                                                <%= link_to "See Results", category_lesson_path(category, is_finished(category)) %>
+                                                            <% end %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                    <% else %>
+                                        <div class="container col-7">
+                                            <div class="row justify-content-center">
+                                                <div class="mt-4 col-lg-8">
+                                                    <span>
+                                                        <h3 class="center">No lessons yet.</h3>
+                                                        <div class="image">
+                                                            <%= link_to image_tag("1906_Surprised_Pikachu.png", alt: "Pikachu emote"),
+                                                                'https://discordemoji.com/assets/emoji/1906_Surprised_Pikachu.png' %>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <% end %>
                                 </div>
-                                <p class="card-text"><%= category.description %></p>
-                                    <% if is_finished(category).nil? %>
-                                        <%= render 'form', category:category %>
-                                    <% else %>
-                                        <%= link_to "See Results", category_lesson_path(category, is_finished(category)) %>
-                                    <% end %>
                             </div>
                         </div>
                     </div>
-                <% end %>
-            <% end %>
-        
+                </div>
+            </div>
+        </div>
     </div>
-</div>

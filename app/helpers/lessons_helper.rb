@@ -4,10 +4,10 @@ module LessonsHelper
     end
 
     def show_result(category)
-        Lesson.find_by(category_id: category.id, user_id: current_user.id).result
+        Lesson.find_by(category_id: category.id, user_id: current_user.id, is_completed: true).result
     end
 
     def total_words(category)
-        Lesson.find_by(category_id: category.id, user_id: current_user.id).words.count
+        Lesson.find_by(category_id: category.id, user_id: current_user.id, is_completed: true).words.count
     end
 end

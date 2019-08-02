@@ -6,31 +6,41 @@
                 <h1><%= @category.title %></h1>
                 <hr>
                 <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Word</th>
-                            <th>Answer</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% @words.each do |word| %>
-                        <tr>
-                            <td><%= word.name %></td>
-                            <% word.choices.each do |choice| %>
-                                <% if choice.correct? %>
-                                    <td><%= choice.content %></td>
+                    <% if @words.any? %>
+                        <thead>
+                            <tr>
+                                <th>Word</th>
+                                <th>Answer</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% @words.each do |word| %>
+                            <tr>
+                                <td><%= word.name %></td>
+                                <% word.choices.each do |choice| %>
+                                    <% if choice.correct? %>
+                                        <td><%= choice.content %></td>
+                                    <% end %>
                                 <% end %>
+                                <td>
+                                    <%= link_to "Edit", edit_admin_category_word_path(@category, word) %> |
+                                    <%= link_to "Delete", [:admin, @category, word],
+                                        method: :delete,
+                                        data: { confirm: "You sure?"} %>
+                                </td>
+                            </tr>
                             <% end %>
-                            <td>
-                                <%= link_to "Edit", edit_admin_category_word_path(@category, word) %> |
-                                <%= link_to "Delete", [:admin, @category, word],
-                                    method: :delete,
-                                    data: { confirm: "You sure?"} %>
-                            </td>
-                        </tr>
-                        <% end %>
-                    </tbody>
+                        </tbody>
+                    <% else %>
+                        <span>
+                            <h3 class="center">No words</h3>
+                            <div class="image">
+                                <%= link_to image_tag("1906_Surprised_Pikachu.png", alt: "Pikachu emote"),
+                                    'https://discordemoji.com/assets/emoji/1906_Surprised_Pikachu.png' %>
+                            </div>
+                        </span>
+                    <% end %>
                 </table>
                 <%= link_to "Add word", new_admin_category_word_path, class: "btn btn-primary" %>
                 <%= link_to "Back", admin_categories_path, class: "btn btn-primary" %>
