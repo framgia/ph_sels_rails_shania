@@ -18,12 +18,14 @@ User.create!(name:  "Admin User",
 end
 
 #Category
-12.times do
+4.times do
   title = Faker::Games::Pokemon.unique.move
   description = Faker::Games::Pokemon.unique.location
-  Category.create!(title:  title,
-    description: description)
+  name = Faker::Coffee.unique.blend_name
+  content = Faker::Lorem.unique.word
+  category =  Category.create!(title: title, description: description)
 end
+
 
 #Following relationships
 users = User.all
